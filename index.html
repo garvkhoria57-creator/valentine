@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 40px;
+  color: #b0004e;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 14px 30px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#yes {
+  background-color: #ff2f6e;
+  color: white;
+}
+
+#no {
+  background-color: #888;
+  color: white;
+  position: absolute;
+  left: 55%;
+  top: 60%;
+}
+.heart {
+  position: absolute;
+  color: rgba(255, 0, 100, 0.6);
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Will you be my Valentine? 💘</h1>
+  <button id="yes">Yes 💖</button>
+</div>
+
+<button id="no">No 🙈</button>
+
+<audio id="music" loop>
+  <source src="tera_mujhse.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Floating hearts
+for (let i = 0; i < 30; i++) {
+  let heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+  heart.style.fontSize = (15 + Math.random() * 25) + "px";
+  document.body.appendChild(heart);
+}
+
+const noBtn = document.getElementById("no");
+const yesBtn = document.getElementById("yes");
+const music = document.getElementById("music");
+
+// Make NO run away
+noBtn.addEventListener("mouseenter", () => {
+  noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+});
+
+// Start music + go next page
+yesBtn.addEventListener("click", () => {
+  music.play();
+  setTimeout(() => {
+    window.location.href = "yes.html";
+  }, 500);
+});
+</script>
+
+</body>
+</html>
